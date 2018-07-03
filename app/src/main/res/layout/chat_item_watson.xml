@@ -8,14 +8,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:layout_gravity="bottom"
         android:src="@mipmap/ic_face" />
 
-    <TextView
+    <WebView
+        android:paddingTop="40dp"
+        android:paddingStart="20dp"
+        android:padding="10dp"
         android:id="@+id/message"
         android:autoLink="web"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
@@ -24,7 +27,9 @@
         android:fontFamily="sans-serif"
         android:textColor="@android:color/black"
         android:textIsSelectable="true"
-        android:textSize="14sp" />
+        android:textSize="14sp">
+
+    </WebView>
 
 
 </LinearLayout>

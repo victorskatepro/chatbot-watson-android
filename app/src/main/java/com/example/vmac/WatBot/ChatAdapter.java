@@ -5,10 +5,13 @@ package com.example.vmac.WatBot;
  */
 
 import android.graphics.Typeface;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 
@@ -62,7 +65,15 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         Message message = messageArrayList.get(position);
         message.setMessage(message.getMessage());
-        ((ViewHolder) holder).message.setText(message.getMessage());
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+        {
+            String code = "<html>" + message.getMessage() + "</html>";
+            ((ViewHolder) holder).message.loadData(code, "text/html", "UTF-8");
+        }else {
+            String code = "<html>" + message.getMessage() + "</html>";
+            ((ViewHolder) holder).message.loadData(code, "text/html", "UTF-8");
+        }
         }
 
     @Override
@@ -71,11 +82,11 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView message;
+        WebView message;
 
         public ViewHolder(View view) {
             super(view);
-            message = (TextView) itemView.findViewById(R.id.message);
+            message = (WebView) itemView.findViewById(R.id.message);
 
             //TODO: Uncomment this if you want to use a custom Font
             /*String customFont = "Montserrat-Regular.ttf";
